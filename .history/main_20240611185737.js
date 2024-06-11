@@ -196,8 +196,13 @@ back.addEventListener("click", () => {
 
 next.addEventListener("click", () => {
   index += 1;
-  if (index >= songs.length) {
-    index = 0;
+  if (
+    index >
+    parseInt(Array.from(document.getElementsByClassName("songItem")).length) - 1
+  ) {
+    index = parseInt(
+      Array.from(document.getElementsByClassName("songItem"))[0]
+    );
   }
   music.src = `${songs[index].mp3link}`;
   poster_master_play.src = songs[index].poster;
@@ -211,14 +216,4 @@ next.addEventListener("click", () => {
   Array.from(document.getElementsByClassName("songItem"))[
     `${index}`
   ].style.background = "rgb(105, 105, 170, 0.1)";
-});
-
-let left_scroll = document.getElementById("left_scroll");
-let right_scroll = document.getElementById("right_scroll");
-let items = document.getElementsByClassName("items")[0];
-left_scroll.addEventListener("click", () => {
-  items.scrollLeft -= 330;
-});
-right_scroll.addEventListener("click", () => {
-  items.scrollLeft += 330;
 });

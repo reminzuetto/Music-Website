@@ -1,4 +1,4 @@
-const music = new Audio("./Music/MTP/DungLamTraiTimAnhDau.mp3");
+const music = new Audio("Music/MTP/DungLamTraiTimAnhDau.mp3");
 
 const songs = [
   {
@@ -6,21 +6,21 @@ const songs = [
     songname: `Đừng làm trái tim anh đau
                   <div class="subtitle">Sơn Tùng MTP</div>`,
     poster: "./MusicThumbnail/DungLamTraiTimAnhDau.jpg",
-    mp3link: `./Music/MTP/DungLamTraiTimAnhDau.mp3`,
+    mp3link: `DungLamTraiTimAnhDau.mp3`,
   },
   {
     id: 2,
     songname: `Muộn rồi mà sao còn
                   <div class="subtitle">Sơn Tùng MTP</div>`,
     poster: "./MusicThumbnail/MuonRoiMaSaoCon.jpg",
-    mp3link: `./Music/MTP/MuonRoiMaSaoCon.mp3`,
+    mp3link: `MuonRoiMaSaoCon.mp3`,
   },
   {
     id: 3,
     songname: `Nơi này có anh
                   <div class="subtitle">Sơn Tùng MTP</div>`,
     poster: "./MusicThumbnail/NoiNayCoAnh.jpg",
-    mp3link: `./Music/MTP/NoiNayCoAnh.mp3`,
+    mp3link: `NoiNayCoAnh.mp3`,
   },
 ];
 
@@ -77,7 +77,7 @@ Array.from(document.getElementsByClassName("playListPlay")).forEach(
         makeAllPlay();
         e.target.classList.remove("bi-play-circle-fill");
         e.target.classList.add("bi-pause-circle-fill");
-        music.src = `${songs[index].mp3link}`;
+        music.src = `./Music/MTP/${songs[index].mp3link}`;
         poster_master_play.src = songs[index].poster;
         title.innerHTML = songs[index].songname;
         music.play();
@@ -176,49 +176,6 @@ let next = document.getElementById("next");
 back.addEventListener("click", () => {
   index -= 1;
   if (index < 0) {
-    index =
-      parseInt(Array.from(document.getElementsByClassName("songItem")).length) -
-      1;
+    index = parseInt(Array.from(document.getElementsByClassName("songItem")).length;
   }
-  music.src = `${songs[index].mp3link}`;
-  poster_master_play.src = songs[index].poster;
-  title.innerHTML = songs[index].songname;
-  makeAllPlay();
-  music.play();
-  document.getElementById(`${index}`).classList.add("bi-pause-fill");
-  document.getElementById(`${index}`).classList.remove("bi-play-fill");
-  wave.classList.add("active2");
-  makeAllBackgrounds();
-  Array.from(document.getElementsByClassName("songItem"))[
-    `${index}`
-  ].style.background = "rgb(105, 105, 170, 0.1)";
-});
-
-next.addEventListener("click", () => {
-  index += 1;
-  if (index >= songs.length) {
-    index = 0;
-  }
-  music.src = `${songs[index].mp3link}`;
-  poster_master_play.src = songs[index].poster;
-  title.innerHTML = songs[index].songname;
-  makeAllPlay();
-  music.play();
-  document.getElementById(`${index}`).classList.add("bi-pause-fill");
-  document.getElementById(`${index}`).classList.remove("bi-play-fill");
-  wave.classList.add("active2");
-  makeAllBackgrounds();
-  Array.from(document.getElementsByClassName("songItem"))[
-    `${index}`
-  ].style.background = "rgb(105, 105, 170, 0.1)";
-});
-
-let left_scroll = document.getElementById("left_scroll");
-let right_scroll = document.getElementById("right_scroll");
-let items = document.getElementsByClassName("items")[0];
-left_scroll.addEventListener("click", () => {
-  items.scrollLeft -= 330;
-});
-right_scroll.addEventListener("click", () => {
-  items.scrollLeft += 330;
 });

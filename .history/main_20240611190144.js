@@ -215,10 +215,10 @@ next.addEventListener("click", () => {
 
 let left_scroll = document.getElementById("left_scroll");
 let right_scroll = document.getElementById("right_scroll");
-let items = document.getElementsByClassName("items")[0];
+let item = document.getElementsByClassName("item");
 left_scroll.addEventListener("click", () => {
-  items.scrollLeft -= 330;
+  popular_artist.scrollLeft -= 330;
 });
 right_scroll.addEventListener("click", () => {
-  items.scrollLeft += 330;
+  popular_artist.scrollLeft += 330;
 });

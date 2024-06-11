@@ -183,42 +183,8 @@ back.addEventListener("click", () => {
   music.src = `${songs[index].mp3link}`;
   poster_master_play.src = songs[index].poster;
   title.innerHTML = songs[index].songname;
-  makeAllPlay();
   music.play();
-  document.getElementById(`${index}`).classList.add("bi-pause-fill");
-  document.getElementById(`${index}`).classList.remove("bi-play-fill");
+  masterPlay.classList.add("bi-pause-fill");
+  masterPlay.classList.remove("bi-play-fill");
   wave.classList.add("active2");
-  makeAllBackgrounds();
-  Array.from(document.getElementsByClassName("songItem"))[
-    `${index}`
-  ].style.background = "rgb(105, 105, 170, 0.1)";
-});
-
-next.addEventListener("click", () => {
-  index += 1;
-  if (index >= songs.length) {
-    index = 0;
-  }
-  music.src = `${songs[index].mp3link}`;
-  poster_master_play.src = songs[index].poster;
-  title.innerHTML = songs[index].songname;
-  makeAllPlay();
-  music.play();
-  document.getElementById(`${index}`).classList.add("bi-pause-fill");
-  document.getElementById(`${index}`).classList.remove("bi-play-fill");
-  wave.classList.add("active2");
-  makeAllBackgrounds();
-  Array.from(document.getElementsByClassName("songItem"))[
-    `${index}`
-  ].style.background = "rgb(105, 105, 170, 0.1)";
-});
-
-let left_scroll = document.getElementById("left_scroll");
-let right_scroll = document.getElementById("right_scroll");
-let items = document.getElementsByClassName("items")[0];
-left_scroll.addEventListener("click", () => {
-  items.scrollLeft -= 330;
-});
-right_scroll.addEventListener("click", () => {
-  items.scrollLeft += 330;
 });
