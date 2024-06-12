@@ -183,15 +183,15 @@ document.addEventListener("DOMContentLoaded", function () {
     makeAllPlay();
     document.getElementById(index + 1).classList.add("bi-pause-circle-fill");
     document.getElementById(index + 1).classList.remove("bi-play-circle-fill");
-    console.log(document.getElementsByClassName("wave")[0].classList);
     wave.classList.add("active2");
-    console.log(document.getElementsByClassName("wave")[0].classList);
-
     updateMasterPlayButton();
     makeAllBackgrounds();
     Array.from(document.getElementsByClassName("songItem"))[
       index
     ].style.background = "rgba(105, 105, 170, 0.1)";
+    masterPlay.classList.add("bi-play-fill");
+    masterPlay.classList.remove("bi-pause-fill");
+    wave.classList.remove("active2");
   };
 
   back.addEventListener("click", () => changeSong(-1));

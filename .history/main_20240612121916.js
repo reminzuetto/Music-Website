@@ -40,7 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let title = document.getElementById("title");
 
   const updateMasterPlayButton = () => {
-    if (music.paused || music.currentTime <= 0) {
+    console.log("updateMasterPlayButton called");
+    if (music.play || music.currentTime >= 0) {
       masterPlay.classList.add("bi-play-fill");
       masterPlay.classList.remove("bi-pause-fill");
       wave.classList.remove("active2");
@@ -183,9 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
     makeAllPlay();
     document.getElementById(index + 1).classList.add("bi-pause-circle-fill");
     document.getElementById(index + 1).classList.remove("bi-play-circle-fill");
-    console.log(document.getElementsByClassName("wave")[0].classList);
     wave.classList.add("active2");
-    console.log(document.getElementsByClassName("wave")[0].classList);
 
     updateMasterPlayButton();
     makeAllBackgrounds();

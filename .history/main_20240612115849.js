@@ -51,6 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+const changeMasterPlay
+
   masterPlay.addEventListener("click", () => {
     if (music.paused || music.currentTime <= 0) {
       music.play();

@@ -40,22 +40,30 @@ document.addEventListener("DOMContentLoaded", function () {
   let title = document.getElementById("title");
 
   const updateMasterPlayButton = () => {
+    console.log("updateMasterPlayButton called");
     if (music.paused || music.currentTime <= 0) {
       masterPlay.classList.add("bi-play-fill");
       masterPlay.classList.remove("bi-pause-fill");
       wave.classList.remove("active2");
+      console.log(
+        "Music paused or stopped. MasterPlay button updated to play."
+      );
     } else {
       masterPlay.classList.add("bi-pause-fill");
       masterPlay.classList.remove("bi-play-fill");
       wave.classList.add("active2");
+      console.log("Music playing. MasterPlay button updated to pause.");
     }
   };
 
   masterPlay.addEventListener("click", () => {
+    console.log("masterPlay clicked");
     if (music.paused || music.currentTime <= 0) {
       music.play();
+      console.log("Music play triggered.");
     } else {
       music.pause();
+      console.log("Music pause triggered.");
     }
     updateMasterPlayButton();
   });
@@ -89,8 +97,18 @@ document.addEventListener("DOMContentLoaded", function () {
         music.src = songs[index].mp3link;
         poster_master_play.src = songs[index].poster;
         title.innerHTML = songs[index].songname;
-        music.play();
-        updateMasterPlayButton();
+        music
+          .play()
+          .then(() => {
+            console.log(
+              "Music started playing for song:",
+              songs[index].songname
+            );
+            updateMasterPlayButton();
+          })
+          .catch((error) => {
+            console.error("Error playing the audio file:", error);
+          });
         makeAllBackgrounds();
         Array.from(document.getElementsByClassName("songItem"))[
           index
@@ -99,7 +117,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   );
 
-  music.addEventListener("ended", updateMasterPlayButton);
+  music.addEventListener("ended", () => {
+    console.log("Music ended");
+    updateMasterPlayButton();
+  });
 
   let currentStart = document.getElementById("currentStart");
   let currentEnd = document.getElementById("currentEnd");
@@ -179,15 +200,19 @@ document.addEventListener("DOMContentLoaded", function () {
     music.src = songs[index].mp3link;
     poster_master_play.src = songs[index].poster;
     title.innerHTML = songs[index].songname;
-    music.play();
+    music
+      .play()
+      .then(() => {
+        console.log("Music started playing for song:", songs[index].songname);
+        updateMasterPlayButton();
+      })
+      .catch((error) => {
+        console.error("Error playing the audio file:", error);
+      });
     makeAllPlay();
-    document.getElementById(index + 1).classList.add("bi-pause-circle-fill");
-    document.getElementById(index + 1).classList.remove("bi-play-circle-fill");
-    console.log(document.getElementsByClassName("wave")[0].classList);
+    document.getElementById(index).classList.add("bi-pause-circle-fill");
+    document.getElementById(index).classList.remove("bi-play-circle-fill");
     wave.classList.add("active2");
-    console.log(document.getElementsByClassName("wave")[0].classList);
-
-    updateMasterPlayButton();
     makeAllBackgrounds();
     Array.from(document.getElementsByClassName("songItem"))[
       index

@@ -40,24 +40,26 @@ document.addEventListener("DOMContentLoaded", function () {
   let title = document.getElementById("title");
 
   const updateMasterPlayButton = () => {
-    if (music.paused || music.currentTime <= 0) {
-      masterPlay.classList.add("bi-play-fill");
-      masterPlay.classList.remove("bi-pause-fill");
-      wave.classList.remove("active2");
-    } else {
+    console.log("updateMasterPlayButton called");
+    if (music.play || music.currentTime >= 0) {
       masterPlay.classList.add("bi-pause-fill");
       masterPlay.classList.remove("bi-play-fill");
       wave.classList.add("active2");
+    } else {
+      masterPlay.classList.add("bi-play-fill");
+      masterPlay.classList.remove("bi-pause-fill");
+      wave.classList.remove("active2");
     }
   };
 
   masterPlay.addEventListener("click", () => {
-    if (music.paused || music.currentTime <= 0) {
-      music.play();
-    } else {
-      music.pause();
-    }
     updateMasterPlayButton();
+    if (music.play || music.currentTime >= 0) {
+      music.pause();
+    } else {
+      music.play();
+    }
+    // updateMasterPlayButton();
   });
 
   const makeAllPlay = () => {
@@ -183,9 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
     makeAllPlay();
     document.getElementById(index + 1).classList.add("bi-pause-circle-fill");
     document.getElementById(index + 1).classList.remove("bi-play-circle-fill");
-    console.log(document.getElementsByClassName("wave")[0].classList);
     wave.classList.add("active2");
-    console.log(document.getElementsByClassName("wave")[0].classList);
 
     updateMasterPlayButton();
     makeAllBackgrounds();

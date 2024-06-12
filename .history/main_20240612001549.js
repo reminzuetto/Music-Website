@@ -183,10 +183,8 @@ document.addEventListener("DOMContentLoaded", function () {
     makeAllPlay();
     document.getElementById(index + 1).classList.add("bi-pause-circle-fill");
     document.getElementById(index + 1).classList.remove("bi-play-circle-fill");
-    console.log(document.getElementsByClassName("wave")[0].classList);
-    wave.classList.add("active2");
-    console.log(document.getElementsByClassName("wave")[0].classList);
 
+    wave.classList.add("active2");
     updateMasterPlayButton();
     makeAllBackgrounds();
     Array.from(document.getElementsByClassName("songItem"))[

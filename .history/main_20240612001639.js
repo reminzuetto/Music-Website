@@ -185,8 +185,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById(index + 1).classList.remove("bi-play-circle-fill");
     console.log(document.getElementsByClassName("wave")[0].classList);
     wave.classList.add("active2");
-    console.log(document.getElementsByClassName("wave")[0].classList);
-
     updateMasterPlayButton();
     makeAllBackgrounds();
     Array.from(document.getElementsByClassName("songItem"))[

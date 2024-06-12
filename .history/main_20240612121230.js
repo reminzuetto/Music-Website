@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let title = document.getElementById("title");
 
   const updateMasterPlayButton = () => {
+    console.log("updateMasterPlayButton called");
     if (music.paused || music.currentTime <= 0) {
       masterPlay.classList.add("bi-play-fill");
       masterPlay.classList.remove("bi-pause-fill");
@@ -52,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   masterPlay.addEventListener("click", () => {
+    console.log("masterPlay clicked");
     if (music.paused || music.currentTime <= 0) {
       music.play();
     } else {
@@ -89,8 +91,14 @@ document.addEventListener("DOMContentLoaded", function () {
         music.src = songs[index].mp3link;
         poster_master_play.src = songs[index].poster;
         title.innerHTML = songs[index].songname;
-        music.play();
-        updateMasterPlayButton();
+        music
+          .play()
+          .then(() => {
+            updateMasterPlayButton();
+          })
+          .catch((error) => {
+            console.error("Error playing the audio file:", error);
+          });
         makeAllBackgrounds();
         Array.from(document.getElementsByClassName("songItem"))[
           index
@@ -179,19 +187,22 @@ document.addEventListener("DOMContentLoaded", function () {
     music.src = songs[index].mp3link;
     poster_master_play.src = songs[index].poster;
     title.innerHTML = songs[index].songname;
-    music.play();
+    music
+      .play()
+      .then(() => {
+        updateMasterPlayButton();
+      })
+      .catch((error) => {
+        console.error("Error playing the audio file:", error);
+      });
     makeAllPlay();
-    document.getElementById(index + 1).classList.add("bi-pause-circle-fill");
-    document.getElementById(index + 1).classList.remove("bi-play-circle-fill");
-    console.log(document.getElementsByClassName("wave")[0].classList);
+    document.getElementById(index).classList.add("bi-pause-circle-fill");
+    document.getElementById(index).classList.remove("bi-play-circle-fill");
     wave.classList.add("active2");
-    console.log(document.getElementsByClassName("wave")[0].classList);
-
-    updateMasterPlayButton();
     makeAllBackgrounds();
     Array.from(document.getElementsByClassName("songItem"))[
       index
-    ].style.background = "rgba(105, 105, 170, 0.1)";
+    ].style.background = "rgba(105, 105, 170, 0.1) ";
   };
 
   back.addEventListener("click", () => changeSong(-1));
